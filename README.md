@@ -28,20 +28,36 @@
 
 ## Download
 
-**[⬇ Get the latest version from GitHub Releases](https://github.com/Pathway-Solutions-LTD/NetSom-Note/releases/latest)** – free for everyone.
+**[⬇ Download the latest version](https://github.com/Pathway-Solutions-LTD/NetSom-Note/releases/latest)** – free for everyone.
 
-| Platform | Download |
+Every release contains an installer for each system:
+
+| System | File to download |
 | --- | --- |
-| macOS (Apple Silicon) | [NetSom-Note_0.1.0_aarch64.dmg](downloads/NetSom-Note_0.1.0_aarch64.dmg) |
-| macOS (Intel) | Built by the release workflow (see below) |
-| Windows | `.msi` / `.exe` from the release workflow (see below) |
-| Linux | `.deb` / `.AppImage` from the release workflow (see below) |
+| macOS – Apple Silicon (M1/M2/M3/M4) | `NetSom.Note_x.y.z_aarch64.dmg` |
+| macOS – Intel | `NetSom.Note_x.y.z_x64.dmg` |
+| Windows | `NetSom.Note_x.y.z_x64-setup.exe` or `.msi` |
+| Linux | `.AppImage` (any distro) or `.deb` (Ubuntu/Debian) |
 
-**Install on macOS:** open the `.dmg` and drag *NetSom Note* into *Applications*. The app is not code-signed yet, so on first launch right-click the app and choose **Open**.
+**macOS:** open the `.dmg` and drag *NetSom Note* into *Applications*. The app is not code-signed yet, so on first launch right-click it and choose **Open**.
+**Windows:** run the installer. If SmartScreen warns, choose *More info → Run anyway*.
+**Linux:** `chmod +x NetSom.Note_*.AppImage && ./NetSom.Note_*.AppImage`, or install the `.deb` with `sudo dpkg -i`.
 
-### Building the Windows and Linux installers
+A copy of the Apple Silicon build is also in [downloads/](downloads/).
 
-Installers can only be built on their own operating system, so this repo includes a GitHub Actions workflow ([.github/workflows/release.yml](.github/workflows/release.yml)). Run the **Build NetSom Note** workflow manually or push a tag such as `v0.1.0`. It builds macOS (Apple Silicon and Intel), Windows and Linux installers and attaches them to a draft GitHub Release, which becomes your public download page.
+## Publishing a release (GitHub Actions)
+
+The workflow in [.github/workflows/release.yml](.github/workflows/release.yml) builds all installers automatically on GitHub's macOS, Windows and Linux machines.
+
+1. Push the code to `main`.
+2. Create a version tag and push it:
+   ```bash
+   git tag v0.1.0
+   git push origin v0.1.0
+   ```
+   (Or open **Actions → Build NetSom Note → Run workflow**.)
+3. Wait about 10–20 minutes for the four jobs (macOS ARM, macOS Intel, Windows, Linux) to finish.
+4. Open **Releases**, review the draft release that was created, and click **Publish release**. Everyone can now download the installers.
 
 ## Build from source
 
