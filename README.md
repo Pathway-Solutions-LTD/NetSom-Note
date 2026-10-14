@@ -39,7 +39,13 @@ Every release contains an installer for each system:
 | Windows | `NetSom.Note_x.y.z_x64-setup.exe` or `.msi` |
 | Linux | `.AppImage` (any distro) or `.deb` (Ubuntu/Debian) |
 
-**macOS:** open the `.dmg` and drag *NetSom Note* into *Applications*. The app is not code-signed yet, so on first launch right-click it and choose **Open**.
+**macOS:** open the `.dmg` and drag *NetSom Note* into *Applications*. The app is not notarized by Apple yet, so macOS shows a warning the first time. Open it like this:
+1. Try to open the app once, then click **Done / Cancel**.
+2. Go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway** next to *NetSom Note*.
+3. If macOS says the app is **"damaged and can't be opened"**, open **Terminal** and run this once, then open the app again:
+   ```bash
+   xattr -cr "/Applications/NetSom Note.app"
+   ```
 **Windows:** run the installer. If SmartScreen warns, choose *More info → Run anyway*.
 **Linux:** `chmod +x NetSom.Note_*.AppImage && ./NetSom.Note_*.AppImage`, or install the `.deb` with `sudo dpkg -i`.
 
@@ -52,8 +58,8 @@ The workflow in [.github/workflows/release.yml](.github/workflows/release.yml) b
 1. Push the code to `main`.
 2. Create a version tag and push it:
    ```bash
-   git tag v0.1.0
-   git push origin v0.1.0
+   git tag v0.1.1
+   git push origin v0.1.1
    ```
    (Or open **Actions → Build NetSom Note → Run workflow**.)
 3. Wait about 10–20 minutes for the four jobs (macOS ARM, macOS Intel, Windows, Linux) to finish.
