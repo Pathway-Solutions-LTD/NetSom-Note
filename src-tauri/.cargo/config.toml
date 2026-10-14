@@ -1,0 +1,4 @@
+# Bundle the Visual C++ runtime into the exe so Windows PCs without the
+# "VC++ Redistributable" don't hit "VCRUNTIME140_1.dll was not found".
+[target.'cfg(all(windows, target_env = "msvc"))']
+rustflags = ["-C", "target-feature=+crt-static"]

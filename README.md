@@ -46,10 +46,8 @@ Every release contains an installer for each system:
    ```bash
    xattr -cr "/Applications/NetSom Note.app"
    ```
-**Windows:** run the installer. If SmartScreen warns, choose *More info → Run anyway*.
+**Windows:** run the installer (`-setup.exe` or `.msi`). If SmartScreen warns, choose *More info → Run anyway*. If you ever see *VCRUNTIME140_1.dll was not found*, you have an old version – download the latest release.
 **Linux:** `chmod +x NetSom.Note_*.AppImage && ./NetSom.Note_*.AppImage`, or install the `.deb` with `sudo dpkg -i`.
-
-A copy of the Apple Silicon build is also in [downloads/](downloads/).
 
 ## Publishing a release (GitHub Actions)
 
@@ -58,8 +56,8 @@ The workflow in [.github/workflows/release.yml](.github/workflows/release.yml) b
 1. Push the code to `main`.
 2. Create a version tag and push it:
    ```bash
-   git tag v0.1.1
-   git push origin v0.1.1
+   git tag v0.1.2
+   git push origin v0.1.2
    ```
    (Or open **Actions → Build NetSom Note → Run workflow**.)
 3. Wait about 10–20 minutes for the four jobs (macOS ARM, macOS Intel, Windows, Linux) to finish.
